@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class InputWindow extends PApplet {
 
   boolean setFrame = true;
