@@ -32,22 +32,28 @@ public class Character {
   
   public void getItem ( Item item ) {
     item.quantity += 1;
+    inventory.add(item);
   }
   
   public void equip(Weapon wpn){
-    this.ATK += wpn.getATK();
+    this.atk += wpn.getATK();
   }
   
   public void uneqip(Weapon wpn){
-    this.ATK -= wpn.getATK();
+    this.atk -= wpn.getATK();
   }
   
   public void equip(Armor amr){
-    this.DEF += amr.getDEF();
+    this.def += amr.getDEF();
   }
   
   public void unequip(Armor amr){
-    this.DEF -= amr.getDEF();
+    this.def -= amr.getDEF();
+  }
+  
+  public void use(UsableItem item, int num){
+    item.use(num);
+    inventory.remove(item);
   }
   
 }

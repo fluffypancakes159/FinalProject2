@@ -4,10 +4,12 @@ public void setup ( ) {
   String[] args = { "RPG" };
   InputWindow iw = new InputWindow();
   PApplet.runSketch(args, iw);
-  Item testWeapon = new Weapon ( "test" );
+  UsableItem testItem = new UsableItem( "test" );
   Character player = new Character ( );
-  player.inventory.add( testItem );
   player.getItem( testItem );
+  System.out.println(player);
+  player.use(testItem, 1);
+  System.out.println(player);
   StatusWindow sw = new StatusWindow( player );
   PApplet.runSketch(args, sw);
 }
