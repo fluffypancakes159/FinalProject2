@@ -39,7 +39,7 @@ public class Character {
     this.atk += wpn.getATK();
   }
   
-  public void uneqip(Weapon wpn){
+  public void unequip(Weapon wpn){
     this.atk -= wpn.getATK();
   }
   
