@@ -34,4 +34,20 @@ public class Character {
     item.quantity += 1;
   }
   
+  public void equip(Weapon wpn){
+    this.ATK += wpn.getATK();
+  }
+  
+  public void uneqip(Weapon wpn){
+    this.ATK -= wpn.getATK();
+  }
+  
+  public void equip(Armor amr){
+    this.DEF += amr.getDEF();
+  }
+  
+  public void unequip(Armor amr){
+    this.DEF -= amr.getDEF();
+  }
+  
 }

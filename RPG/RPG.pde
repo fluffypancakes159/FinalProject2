@@ -4,7 +4,7 @@ public void setup ( ) {
   String[] args = { "RPG" };
   InputWindow iw = new InputWindow();
   PApplet.runSketch(args, iw);
-  Item testItem = new Item ( "test" );
+  Item testWeapon = new Weapon ( "test" );
   Character player = new Character ( );
   player.inventory.add( testItem );
   player.getItem( testItem );
