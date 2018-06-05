@@ -3,26 +3,30 @@ import java.util.Scanner;
 public class Map {
   
   Point[][]map;
-  Point start = new Point( 0, 0, true );
+  Point start;
   
   public Map ( ) {
-    map = new Point[10][10];
-    for ( int i = 0 ; i < map.length ; i++ ) {
-      for ( int j = 0 ; j < map[i].length ; j++ ) {
-        map[i][j] = new Point( i , j );
-      }
-    }
-    map[0][0] = start;
+    this(10, 10);
   }
   
   public Map ( int x, int y) {
     map = new Point[y][x];
+    int startX = x/2;
+    int startY = y/2;
+    start = new Point( startY , startX , true );
     for ( int i = 0 ; i < map.length ; i++ ) {
       for ( int j = 0 ; j < map[i].length ; j++ ) {
-        map[i][j] = new Point( i , j );
+        
+        if ( Math.abs( startX - j ) + Math.abs( startY - i ) <= 3) { //vision radius of 3
+          map[i][j] = new Point( i , j , '.');
+        }
+        else {
+          map[i][j] = new Point( i , j , '?'); //unseen place
+        }
+        
       }
     }
-    map[0][0] = start;
+    map[startY][startX] = start;
   }
   
   public String toString ( ) {
@@ -56,13 +60,19 @@ public class Map {
     
     public Point ( int x, int y ) {
       this ( x , y , '.' );
+      
     }
     
-    public Point ( int x, int y, char place ) {
+    public Point ( int x, int y, char place_ ) {
       this.x = x;
       this.y = y;
-      this.place = place;
-      seen = true;
+      this.place = place_;
+      if ( place_ == '?' ) {
+        seen = false;
+      }
+      else {
+        seen = true;
+      }
       explored = false;
     }
     

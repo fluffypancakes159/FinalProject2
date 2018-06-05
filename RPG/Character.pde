@@ -24,6 +24,18 @@ public class Character {
     inventory = new ArrayList<Item>( );
   }
   
+  public Character ( int startY, int startX) {
+    atk = 10;
+    def = 5;
+    spd = 5;
+    lvl = 1;
+    exp = 0;
+    gold = 10;
+    mapX = startX;
+    mapY = startY;
+    inventory = new ArrayList<Item>( );
+  }
+  
   public String toString( ) {
     String out = "";
     out += "ATK: " + atk + "\n\n";
