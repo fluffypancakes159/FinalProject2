@@ -5,7 +5,7 @@ public void setup ( ) {
   InputWindow iw = new InputWindow();
   PApplet.runSketch(args, iw);
   // Armor testItem = new Armor( "test" , 5);
-  Map testMap = new Map ( );
+  Map testMap = new Map (20, 15);
   int startY = testMap.map.length/2;
   int startX = testMap.map[0].length/2;
   Character player = new Character(startY, startX);

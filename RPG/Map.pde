@@ -103,6 +103,21 @@ public class Map {
       }
     }
     
+    public void resolvePoint ( ) {
+      if ( place == '.' ) {
+        System.out.println( "this is an empty place" );
+      }
+      if ( place == 'H' ) {
+        System.out.println( "this is an abandoned house" );
+      }
+      if ( place == 'B' ) {
+        System.out.println( "this is an enemy base" );
+      }
+      if ( place == 'S' ) {
+        System.out.println( "welcome home!" );
+      }
+    }
+    
   }
   
 }

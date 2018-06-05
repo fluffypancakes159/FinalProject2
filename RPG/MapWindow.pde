@@ -34,7 +34,7 @@ public class MapWindow extends PApplet {
         if ( player.mapX == j && player.mapY == i ) {
           fill(255,0,0);
           text( 'P' , x , y );
-          System.out.println(currentMap.map[i][j].place);
+          // System.out.println(currentMap.map[i][j].place);
           current = currentMap.map[i][j].place;
         }
         else {
@@ -82,6 +82,7 @@ public class MapWindow extends PApplet {
         player.move(1,0); //move right
       }
     }
+    currentMap.map[player.mapY][player.mapX].resolvePoint( );
     updateMap( );
   }
   
