@@ -4,12 +4,12 @@ public class InputWindow extends PApplet {
   String out;
   
   public void settings() {
-    size(500, 400);
+    size(400, 300);
   }
   
   public void draw ( ) { 
     if (setFrame) {
-      surface.setLocation(0, 0);
+      surface.setLocation(0, 420);
       setFrame = false;
     }
     background(255);

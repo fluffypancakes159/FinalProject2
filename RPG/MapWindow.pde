@@ -8,7 +8,7 @@ public class MapWindow extends PApplet {
   
   public void draw ( ) { 
       if (setFrame) {
-        surface.setLocation(400, 500);
+        surface.setLocation(0, 0);
         setFrame = false;
       }
       background(255);
