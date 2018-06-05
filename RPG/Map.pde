@@ -4,6 +4,8 @@ public class Map {
   
   Point[][]map;
   Point start;
+  int startX;
+  int startY;
   
   public Map ( ) {
     this(10, 10);
@@ -11,8 +13,8 @@ public class Map {
   
   public Map ( int x, int y) {
     map = new Point[y][x];
-    int startX = x/2;
-    int startY = y/2;
+    startX = x/2;
+    startY = y/2;
     start = new Point( startY , startX , true );
     for ( int i = 0 ; i < map.length ; i++ ) {
       for ( int j = 0 ; j < map[i].length ; j++ ) {
@@ -89,16 +91,25 @@ public class Map {
     }
     
     public void generatePlace ( ) {
-      int randomNum = (int)(Math.random( ) * 100); // 0-99
+      int randomNum = (int)(Math.random( ) * 500); // 0-499
+      // System.out.println( randomNum );
       if ( this.place == '?' ) {
-        if ( randomNum < 75 ) {
+        if ( randomNum < 470 ) {
           this.place = '.';
         }
-        else if ( randomNum < 90 ) {
+        else if ( randomNum < 490 ) {
           this.place = 'H';
         }
+        else if ( randomNum < 495 ) {
+          this.place = 'C';
+        }
         else {
-          this.place = 'B';
+          if ( Math.abs(this.x - startX) + Math.abs(this.y - startY) >= 7 ) {
+            this.place = 'B';
+          }
+          else {
+            this.place = '.';
+          }
         }
       }
     }
@@ -115,6 +126,9 @@ public class Map {
       }
       if ( place == 'S' ) {
         System.out.println( "welcome home!" );
+      }
+      if ( place == 'S' ) {
+        System.out.println( "there is a chest there" );
       }
     }
     

@@ -9,7 +9,7 @@ public class InputWindow extends PApplet {
   
   public void draw ( ) { 
     if (setFrame) {
-      surface.setLocation(0, 420);
+      surface.setLocation(700, 420);
       setFrame = false;
     }
     background(255);

@@ -10,7 +10,7 @@ public class MapWindow extends PApplet {
   }
   
   public void settings() {
-      size(500, 400);
+      size(600, 800);
   }
   
   public void draw ( ) { 
@@ -73,12 +73,12 @@ public class MapWindow extends PApplet {
       }
     }
     if ( key == 's' || keyCode == DOWN ) {
-      if ( player.mapY < currentMap.map.length ) {
+      if ( player.mapY < currentMap.map.length - 1) {
         player.move(0,1); //move down
       }
     }
     if ( key == 'd' || keyCode == RIGHT ) {
-      if ( player.mapX < currentMap.map[0].length ) {
+      if ( player.mapX < currentMap.map[0].length - 1 ) {
         player.move(1,0); //move right
       }
     }
