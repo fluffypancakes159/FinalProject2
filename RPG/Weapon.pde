@@ -13,7 +13,7 @@ public class Weapon extends Item{
   }
     
   public void use(){
-    durability --;
+    durability--;
   }
   
   public int getATK(){
