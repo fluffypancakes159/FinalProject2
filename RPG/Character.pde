@@ -6,6 +6,8 @@ public class Character {
   int lvl;
   int exp;
   int gold;
+  int mapX;
+  int mapY;
   ArrayList<Item> inventory;
   Weapon equippedWeapon;
   Armor equippedArmor;
@@ -17,6 +19,8 @@ public class Character {
     lvl = 1;
     exp = 0;
     gold = 10;
+    mapX = 0;
+    mapY = 0;
     inventory = new ArrayList<Item>( );
   }
   
@@ -68,6 +72,11 @@ public class Character {
   public void use(UsableItem item, int num){
     item.use(num);
     inventory.remove(item);
+  }
+  
+  public void move ( int x, int y ) {
+    this.mapX += x;
+    this.mapY += y;
   }
   
 }

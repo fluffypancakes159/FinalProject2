@@ -12,6 +12,7 @@ public void setup ( ) {
   // System.out.println(player);
   StatusWindow sw = new StatusWindow( player );
   PApplet.runSketch(args, sw);
-  MapWindow mw = new MapWindow( );
+  Map testMap = new Map ( );
+  MapWindow mw = new MapWindow( testMap , player );
   PApplet.runSketch(args, mw);
 }

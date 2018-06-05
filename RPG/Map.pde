@@ -7,9 +7,26 @@ public class Map {
   
   public Map ( ) {
     map = new Point[10][10];
+    for ( int i = 0 ; i < map.length ; i++ ) {
+      for ( int j = 0 ; j < map[i].length ; j++ ) {
+        map[i][j] = new Point( i , j );
+      }
+    }
+    map[0][0] = start;
+  }
+  
+  public Map ( int x, int y) {
+    map = new Point[y][x];
+    for ( int i = 0 ; i < map.length ; i++ ) {
+      for ( int j = 0 ; j < map[i].length ; j++ ) {
+        map[i][j] = new Point( i , j );
+      }
+    }
+    map[0][0] = start;
   }
   
   public String toString ( ) {
+   
     String out = "";
     for ( int i = 0 ; i < map.length ; i++ ) {
       for ( int j = 0 ; j < map[i].length ; j++ ) {
@@ -17,12 +34,18 @@ public class Map {
           out += '?';
         }
         else {
-          out += map[i][j].place + ' ';
+          if ( map[i][j].place == '.' ) {
+            out += ".  "; // two spaces for single dots
+          }
+          else {
+            out += "" + map[i][j].place + " ";
+          }
         }
       }
       out += "\n";
     }
     return out;
+    
   }
   
   private class Point {
