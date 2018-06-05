@@ -50,6 +50,17 @@ public class MapWindow extends PApplet {
   
   }
   
+  public void updateMap( ) {
+    for ( int i = 0 ; i < currentMap.map.length ; i++ ) {
+      for ( int j = 0 ; j < currentMap.map[i].length ; j++ ) {        
+        if ( Math.abs( player.mapX - j ) + Math.abs( player.mapY - i ) <= 3) { //vision radius of 3
+          currentMap.map[i][j].generatePlace( );
+        }
+        
+      }
+    }
+  }
+  
   public void keyPressed ( ) {
     if ( key == 'w' ) {
       if ( player.mapY > 0 ) {
@@ -71,6 +82,7 @@ public class MapWindow extends PApplet {
         player.move(1,0); //move right
       }
     }
+    updateMap( );
   }
   
 }

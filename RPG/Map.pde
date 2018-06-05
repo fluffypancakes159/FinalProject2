@@ -88,6 +88,21 @@ public class Map {
       this.explored = true;
     }
     
+    public void generatePlace ( ) {
+      int randomNum = (int)(Math.random( ) * 100); // 0-99
+      if ( this.place == '?' ) {
+        if ( randomNum < 75 ) {
+          this.place = '.';
+        }
+        else if ( randomNum < 90 ) {
+          this.place = 'H';
+        }
+        else {
+          this.place = 'B';
+        }
+      }
+    }
+    
   }
   
 }
