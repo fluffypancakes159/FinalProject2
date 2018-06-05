@@ -62,22 +62,22 @@ public class MapWindow extends PApplet {
   }
   
   public void keyPressed ( ) {
-    if ( key == 'w' || key == UP ) {
+    if ( key == 'w' || keyCode == UP ) {
       if ( player.mapY > 0 ) {
         player.move(0,-1); //move up
       }
     }
-    if ( key == 'a' || key == LEFT ) {
+    if ( key == 'a' || keyCode == LEFT ) {
       if ( player.mapX > 0 ) {
         player.move(-1,0); //move left
       }
     }
-    if ( key == 's' || key == DOWN ) {
+    if ( key == 's' || keyCode == DOWN ) {
       if ( player.mapY < currentMap.map.length ) {
         player.move(0,1); //move down
       }
     }
-    if ( key == 'd' || key == RIGHT ) {
+    if ( key == 'd' || keyCode == RIGHT ) {
       if ( player.mapX < currentMap.map[0].length ) {
         player.move(1,0); //move right
       }
