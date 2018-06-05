@@ -13,7 +13,7 @@ public class Armor extends Item{
   }
     
   public void use(){
-    durability --;
+    durability--;
   }
   
   public int getDEF(){

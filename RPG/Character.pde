@@ -7,6 +7,8 @@ public class Character {
   int exp;
   int gold;
   ArrayList<Item> inventory;
+  Weapon equippedWeapon;
+  Armor equippedArmor;
   
   public Character ( ) {
     atk = 10;
@@ -26,6 +28,18 @@ public class Character {
     out += "EXP: " + exp + "\n\n";
     out += "LVL: " + lvl + "\n\n";
     out += "Gold: " + gold + "\n\n";
+    if ( equippedWeapon != null ) {
+      out += "Weapon: " + equippedWeapon + "\n\n";
+    }
+    else {
+      out += "Weapon: Fists\n\n"; 
+    }
+    if ( equippedWeapon != null ) {
+      out += "Armor: " + equippedArmor + "\n\n";
+    }
+    else {
+      out += "Armor: Skin\n\n"; 
+    }
     out += inventory;
     return out;
   }
@@ -36,19 +50,19 @@ public class Character {
   }
   
   public void equip(Weapon wpn){
-    this.atk += wpn.getATK();
+    this.equippedWeapon = wpn;
   }
   
-  public void unequip(Weapon wpn){
-    this.atk -= wpn.getATK();
+  public void unequipWeapon( ){
+    this.equippedWeapon = null;
   }
   
   public void equip(Armor amr){
-    this.def += amr.getDEF();
+    this.equippedArmor = amr;
   }
   
-  public void unequip(Armor amr){
-    this.def -= amr.getDEF();
+  public void unequipArmor( ){
+    this.equippedArmor = null;
   }
   
   public void use(UsableItem item, int num){
