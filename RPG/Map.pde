@@ -8,13 +8,19 @@ public class Map {
   int startY;
   
   public Map ( ) {
-    this(10, 10);
+    this(20, 20);
   }
   
   public Map ( int x, int y) {
     map = new Point[y][x];
     startX = x/2;
     startY = y/2;
+    if ( x > 20 ) {
+      startX = 10;
+    }
+    if ( y > 20 ) {
+      startY = 10;
+    }
     start = new Point( startY , startX , true );
     for ( int i = 0 ; i < map.length ; i++ ) {
       for ( int j = 0 ; j < map[i].length ; j++ ) {
@@ -31,6 +37,7 @@ public class Map {
     map[startY][startX] = start;
   }
   
+  /*
   public String toString ( ) {
    
     String out = "";
@@ -53,6 +60,7 @@ public class Map {
     return out;
     
   }
+  */
   
   private class Point {
     int x, y;

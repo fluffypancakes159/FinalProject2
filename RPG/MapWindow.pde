@@ -3,10 +3,13 @@ public class MapWindow extends PApplet {
   boolean setFrame = true;
   Map currentMap;
   Character player;
+  int offsetX, offsetY;
   
   public MapWindow ( Map map, Character player ) {
     this.currentMap = map;
     this.player = player;
+    offsetX = 0;
+    offsetY = 0;
   }
   
   public void settings() {
@@ -25,11 +28,11 @@ public class MapWindow extends PApplet {
   
   public void outputMap ( ) {
     int x = 20;
-    int y = 40;
+    int y = 60;
     char out = ' ';
     char current = 'S';
-    for ( int i = 0 ; i < currentMap.map.length ; i++ ) {
-      for ( int j = 0 ; j < currentMap.map[i].length ; j++ ) {
+    for ( int i = offsetY ; i < 20 + offsetY && i < currentMap.map.length ; i++ ) {
+      for ( int j = offsetX ; j < 20 + offsetX && i < currentMap.map[i].length ; j++ ) {
         // System.out.println( "" + currentMap.map[i][j] );
         if ( player.mapX == j && player.mapY == i ) {
           fill(255,0,0);
@@ -47,7 +50,7 @@ public class MapWindow extends PApplet {
       x = 20;
     }
     text( "Current Place: " + current , 20 , 20 );
-  
+    text( "X: " + player.mapX + "    Y: " + player.mapY , 20 , 40 ); 
   }
   
   public void updateMap( ) {
@@ -66,20 +69,32 @@ public class MapWindow extends PApplet {
       if ( player.mapY > 0 ) {
         player.move(0,-1); //move up
       }
+      if ( player.mapY < offsetY ) {
+        offsetY--;
+      }
     }
     if ( key == 'a' || keyCode == LEFT ) {
       if ( player.mapX > 0 ) {
         player.move(-1,0); //move left
+      }
+      if ( player.mapX < offsetX ) {
+        offsetX--;
       }
     }
     if ( key == 's' || keyCode == DOWN ) {
       if ( player.mapY < currentMap.map.length - 1) {
         player.move(0,1); //move down
       }
+      if ( player.mapY >= offsetY + 20 ) {
+        offsetY++;
+      }
     }
     if ( key == 'd' || keyCode == RIGHT ) {
       if ( player.mapX < currentMap.map[0].length - 1 ) {
         player.move(1,0); //move right
+      }
+      if ( player.mapX >= offsetX + 20 ) {
+        offsetX++;
       }
     }
     currentMap.map[player.mapY][player.mapX].resolvePoint( );
