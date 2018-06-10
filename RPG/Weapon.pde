@@ -3,9 +3,10 @@ public class Weapon extends Item{
   int ATK, durability;
   boolean equipped;
   
-  public Weapon(String name, int Atk){
+  public Weapon(String name, int Atk, int rarity){
     super(name); 
     ATK = Atk;
+    durability = rarity * 100;
   }
    
   public void equip(){

@@ -1,6 +1,6 @@
 public abstract class Item {
 
-  int quantity;
+  int quantity, rarity;
   String name;
   
   public Item ( String name ) {
