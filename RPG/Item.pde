@@ -8,6 +8,13 @@ public abstract class Item {
     this.name = name;
   }
   
+  /*
+  public Item ( String[] ary ) {
+    name = ary[1];
+    quantity = 0;
+  }
+  */
+  
   public void use(int num){
     quantity -= num;
   }

@@ -1,5 +1,7 @@
 public class Character {
 
+  int currenthp;
+  int maxhp;
   int atk;
   int def;
   int spd;
@@ -13,18 +15,12 @@ public class Character {
   Armor equippedArmor;
   
   public Character ( ) {
-    atk = 10;
-    def = 5;
-    spd = 5;
-    lvl = 1;
-    exp = 0;
-    gold = 10;
-    mapX = 0;
-    mapY = 0;
-    inventory = new ArrayList<Item>( );
+    this(0, 0);
   }
   
   public Character ( int startY, int startX) {
+    maxhp = 20;
+    currenthp = maxhp;
     atk = 10;
     def = 5;
     spd = 5;
@@ -38,25 +34,36 @@ public class Character {
   
   public String toString( ) {
     String out = "";
-    out += "ATK: " + atk + "\n\n";
-    out += "DEF: " + def + "\n\n";
-    out += "SPD: " + spd + "\n\n";
-    out += "EXP: " + exp + "\n\n";
-    out += "LVL: " + lvl + "\n\n";
-    out += "Gold: " + gold + "\n\n";
+    out += "HP: " + currenthp + " / " + maxhp + "\n";
     if ( equippedWeapon != null ) {
-      out += "Weapon: " + equippedWeapon + "\n\n";
+      out += "ATK: " + atk + " (+ " + equippedWeapon.ATK + ") \n";
     }
     else {
-      out += "Weapon: Fists\n\n"; 
+      out += "ATK: " + atk + "\n";
     }
+    if ( equippedArmor != null ) {
+      out += "DEF: " + def + " (+ " + equippedArmor.ATK + ") \n";
+    }
+    else {
+      out += "DEF: " + def + "\n";
+    }
+    out += "SPD: " + spd + "\n";
+    out += "EXP: " + exp + "\n";
+    out += "LVL: " + lvl + "\n";
+    out += "Gold: " + gold + "\n\n";
     if ( equippedWeapon != null ) {
-      out += "Armor: " + equippedArmor + "\n\n";
+      out += "Weapon: " + equippedWeapon + "\n";
+    }
+    else {
+      out += "Weapon: Fists\n"; 
+    }
+    if ( equippedArmor != null ) {
+      out += "Armor: " + equippedArmor + "\n";
     }
     else {
       out += "Armor: Skin\n\n"; 
     }
-    out += inventory;
+    out += "Inventory: " + inventory;
     return out;
   }
   
@@ -81,7 +88,7 @@ public class Character {
     this.equippedArmor = null;
   }
   
-  public void use(UsableItem item, int num){
+  public void use(Restorative item, int num){
     item.use(num);
     inventory.remove(item);
   }
