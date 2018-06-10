@@ -1,5 +1,6 @@
 public class Character {
 
+  int hp;
   int atk;
   int def;
   int spd;
@@ -13,6 +14,7 @@ public class Character {
   Armor equippedArmor;
   
   public Character ( ) {
+    hp = 100;
     atk = 10;
     def = 5;
     spd = 5;
@@ -25,6 +27,7 @@ public class Character {
   }
   
   public Character ( int startY, int startX) {
+    hp = 100;
     atk = 10;
     def = 5;
     spd = 5;
@@ -38,6 +41,7 @@ public class Character {
   
   public String toString( ) {
     String out = "";
+    out += "HP: " + hp + "\n\n";
     out += "ATK: " + atk + "\n\n";
     out += "DEF: " + def + "\n\n";
     out += "SPD: " + spd + "\n\n";
