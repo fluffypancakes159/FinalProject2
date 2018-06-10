@@ -41,7 +41,7 @@ public class Character {
   
   public String toString( ) {
     String out = "";
-    out += "HP: " + hp + "\n\n";
+    out += "HP: " + hp + "/100" + "\n\n";
     out += "ATK: " + atk + "\n\n";
     out += "DEF: " + def + "\n\n";
     out += "SPD: " + spd + "\n\n";

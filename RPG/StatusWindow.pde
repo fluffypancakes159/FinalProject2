@@ -10,7 +10,7 @@ public class StatusWindow extends PApplet {
     }
   
     public void settings() {
-      size(500, 400);
+      size(500, 500);
     }
   
     public void draw ( ) { 
