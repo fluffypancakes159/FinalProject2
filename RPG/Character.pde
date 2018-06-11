@@ -1,5 +1,6 @@
 public class Character {
 
+  String name;
   int currenthp;
   int maxhp;
   int atk;
@@ -7,95 +8,50 @@ public class Character {
   int spd;
   int lvl;
   int exp;
-  int gold;
-  int mapX;
-  int mapY;
-  ArrayList<Item> inventory;
-  Weapon equippedWeapon;
-  Armor equippedArmor;
-  
+  boolean isDefending;
+
   public Character ( ) {
-    this(0, 0);
+    this ( "test" , 30 , 1 , 1 , 1,  1 , 1);
   }
-  
-  public Character ( int startY, int startX) {
-    maxhp = 20;
+
+  public Character ( String name , int maxhp , int atk, int def, int spd, int lvl, int exp ) {
+    this.name = name;
+    this.maxhp = maxhp; // + (int)(Math.random( ) * 11 - 5);
     currenthp = maxhp;
-    atk = 10;
-    def = 5;
-    spd = 5;
-    lvl = 1;
-    exp = 0;
-    gold = 10;
-    mapX = startX;
-    mapY = startY;
-    inventory = new ArrayList<Item>( );
+    this.atk = atk;
+    this.def = def;
+    this.spd = spd;
+    this.lvl = lvl;
+    this.exp = exp;
+    this.isDefending = false;
+  }
+
+  public String toString ( ) {
+    return name;
+  }
+
+  public int getATK ( ) {
+    return atk;
   }
   
-  public String toString( ) {
-    String out = "";
-    out += "HP: " + currenthp + " / " + maxhp + "\n";
-    if ( equippedWeapon != null ) {
-      out += "ATK: " + atk + " (+ " + equippedWeapon.ATK + ") \n";
+  public int getDEF ( ) {
+    return def;
+  }
+  
+  public int getSPD ( ) {
+    return spd;
+  }
+  
+  public void attack ( Character other ) {
+    int damage = getATK( ) - other.getDEF( );
+    if ( damage <= 0 ) {
+      damage = 1;
     }
-    else {
-      out += "ATK: " + atk + "\n";
-    }
-    if ( equippedArmor != null ) {
-      out += "DEF: " + def + " (+ " + equippedArmor.ATK + ") \n";
-    }
-    else {
-      out += "DEF: " + def + "\n";
-    }
-    out += "SPD: " + spd + "\n";
-    out += "EXP: " + exp + "\n";
-    out += "LVL: " + lvl + "\n";
-    out += "Gold: " + gold + "\n\n";
-    if ( equippedWeapon != null ) {
-      out += "Weapon: " + equippedWeapon + "\n";
-    }
-    else {
-      out += "Weapon: Fists\n"; 
-    }
-    if ( equippedArmor != null ) {
-      out += "Armor: " + equippedArmor + "\n";
-    }
-    else {
-      out += "Armor: Skin\n\n"; 
-    }
-    out += "Inventory: " + inventory;
-    return out;
+    other.hurt( damage );
   }
   
-  public void getItem ( Item item ) {
-    item.quantity += 1;
-    inventory.add(item);
+  public void hurt ( int damage ) {
+    currenthp -= damage;
   }
-  
-  public void equip(Weapon wpn){
-    this.equippedWeapon = wpn;
-  }
-  
-  public void unequipWeapon( ){
-    this.equippedWeapon = null;
-  }
-  
-  public void equip(Armor amr){
-    this.equippedArmor = amr;
-  }
-  
-  public void unequipArmor( ){
-    this.equippedArmor = null;
-  }
-  
-  public void use(Restorative item, int num){
-    item.use(num);
-    inventory.remove(item);
-  }
-  
-  public void move ( int x, int y ) {
-    this.mapX += x;
-    this.mapY += y;
-  }
-  
+
 }

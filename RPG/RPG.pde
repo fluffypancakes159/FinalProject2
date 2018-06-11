@@ -23,24 +23,16 @@ public void setup ( ) {
                                 rawItems.getInt(i, "DEF" ), 
                                 rawItems.getInt(i, "SPD" ) ) );
     }
-    else if ( rawItems.getString(i,"itemType").equals( "weapon" ) ) {
+    else if ( rawItems.getString(i,"itemType").equals( "armor" ) ) {
       ItemList.add( new Armor( rawItems.getString(i,"name"), 
                                 rawItems.getInt(i, "ATK" ), 
                                 rawItems.getInt(i, "DEF" ), 
                                 rawItems.getInt(i, "SPD" ) ) );
     }
-    else if ( rawItems.getString(i,"itemType").equals( "weapon" ) ) {
+    else if ( rawItems.getString(i,"itemType").equals( "restorative" ) ) {
       ItemList.add( new Restorative( rawItems.getString(i,"name") , rawItems.getInt(i, "HP" ) ) );
     }
   }
-  if ( ItemList.get(0) == null ) {
-    System.out.println( "null" );
-  }
-  else {
-    System.out.println( ItemList.get(0) );
-  }
-  InputWindow iw = new InputWindow();
-  PApplet.runSketch(args, iw);
   // Armor testItem = new Armor( "test" , 5);
   Map testMap = new Map (40, 40);
   int startY = testMap.map.length/2;
@@ -51,13 +43,18 @@ public void setup ( ) {
   if ( startX > 10 ) {
       startX = 10;
   }
-  Character player = new Character(startY, startX);
+  Player player = new Player(startY, startX);
   // player.equip( testItem );
   // System.out.println(player);
   // player.unequip(testItem);
   // System.out.println(player);
   StatusWindow sw = new StatusWindow( player );
   PApplet.runSketch(args, sw);
+  BattleWindow iw = new BattleWindow( player );
+  PApplet.runSketch(args, iw);
+  // player.equip( ItemList.get(0) );
+  // player.equip( ItemList.get(1) );
+  // player.battle( new Character( ) );
   MapWindow mw = new MapWindow( testMap , player );
   PApplet.runSketch(args, mw);
 }

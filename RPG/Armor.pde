@@ -35,7 +35,7 @@ public class Armor extends Item{
   }
   
   public String toString ( ) {
-    return name + "( DEF: " + DEF + "   ATK: " + ATK + "   SPD: " + SPD + " )";
+    return name + " ( DEF: " + DEF + "   ATK: " + ATK + "   SPD: " + SPD + " )";
   }
   
     

@@ -35,7 +35,7 @@ public class Weapon extends Item{
   }
   
   public String toString ( ) {
-    return name + "( ATK: " + ATK + "   DEF: " + DEF + "   SPD: " + SPD + " )";
+    return name + " ( ATK: " + ATK + "   DEF: " + DEF + "   SPD: " + SPD + " )";
   }
     
 }

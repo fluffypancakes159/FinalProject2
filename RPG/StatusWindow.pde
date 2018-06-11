@@ -1,28 +1,28 @@
 public class StatusWindow extends PApplet {
 
     boolean setFrame = true;
-    Character character;
+    Player player;
     int x = 20;
     int y = 58;
   
-    public StatusWindow ( Character character ) {
-      this.character = character;
+    public StatusWindow ( Player player ) {
+      this.player = player;
     }
   
     public void settings() {
-      size(500, 400);
+      size(600, 400);
     }
   
     public void draw ( ) { 
       if (setFrame) {
-        surface.setLocation(700, 0);
+        surface.setLocation(650, 0);
         setFrame = false;
       }
       background(255);
       textSize( 20 ); 
       text( "Character Status: ", x , 30 );
       textSize( 12 );
-      text( character.toString( ) , x , y );
+      text( player.toString( ) , x , y );
       fill(69);
     }
   

@@ -8,7 +8,7 @@ public class Restorative extends Item {
   }
   
   public String toString ( ) {
-    return name + "( Heals " + HP + " )";
+    return name + " ( Heals " + HP + " )";
   }
   
 }

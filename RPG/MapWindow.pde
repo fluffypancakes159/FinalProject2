@@ -2,10 +2,10 @@ public class MapWindow extends PApplet {
 
   boolean setFrame = true;
   Map currentMap;
-  Character player;
+  Player player;
   int offsetX, offsetY;
   
-  public MapWindow ( Map map, Character player ) {
+  public MapWindow ( Map map, Player player ) {
     this.currentMap = map;
     this.player = player;
     offsetX = 0;
@@ -17,6 +17,7 @@ public class MapWindow extends PApplet {
   }
   
   public void draw ( ) { 
+    if (!player.inBattle) {
       if (setFrame) {
         surface.setLocation(0, 0);
         setFrame = false;
@@ -24,6 +25,7 @@ public class MapWindow extends PApplet {
       background(255);
       outputMap( );
       // fill(0);
+    }
   }
   
   public void outputMap ( ) {
@@ -65,40 +67,44 @@ public class MapWindow extends PApplet {
   }
   
   public void keyPressed ( ) {
-    if ( key == 'w' || keyCode == UP ) {
-      if ( player.mapY > 0 ) {
-        player.move(0,-1); //move up
+    if (!player.inBattle) {
+      if ( key == 'w' || keyCode == UP ) {
+        if ( player.mapY > 0 ) {
+          player.move(0,-1); //move up
+        }
+        if ( player.mapY < offsetY ) {
+          offsetY--;
+        }
       }
-      if ( player.mapY < offsetY ) {
-        offsetY--;
+      if ( key == 'a' || keyCode == LEFT ) {
+        if ( player.mapX > 0 ) {
+          player.move(-1,0); //move left
+        }
+        if ( player.mapX < offsetX ) {
+          offsetX--;
+        }
       }
+      if ( key == 's' || keyCode == DOWN ) {
+        if ( player.mapY < currentMap.map.length - 1) {
+          player.move(0,1); //move down
+        }
+        if ( player.mapY >= offsetY + 20 ) {
+          offsetY++;
+        }
+      }
+      if ( key == 'd' || keyCode == RIGHT ) {
+        if ( player.mapX < currentMap.map[0].length - 1 ) {
+          player.move(1,0); //move right
+        }
+        if ( player.mapX >= offsetX + 20 ) {
+          offsetX++;
+        }
+      }
+      if ( key == ENTER ) {
+        currentMap.map[player.mapY][player.mapX].resolvePoint( );
+      }
+      updateMap( );
     }
-    if ( key == 'a' || keyCode == LEFT ) {
-      if ( player.mapX > 0 ) {
-        player.move(-1,0); //move left
-      }
-      if ( player.mapX < offsetX ) {
-        offsetX--;
-      }
-    }
-    if ( key == 's' || keyCode == DOWN ) {
-      if ( player.mapY < currentMap.map.length - 1) {
-        player.move(0,1); //move down
-      }
-      if ( player.mapY >= offsetY + 20 ) {
-        offsetY++;
-      }
-    }
-    if ( key == 'd' || keyCode == RIGHT ) {
-      if ( player.mapX < currentMap.map[0].length - 1 ) {
-        player.move(1,0); //move right
-      }
-      if ( player.mapX >= offsetX + 20 ) {
-        offsetX++;
-      }
-    }
-    currentMap.map[player.mapY][player.mapX].resolvePoint( );
-    updateMap( );
   }
   
 }
