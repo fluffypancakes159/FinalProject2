@@ -54,7 +54,7 @@ public class BattleWindow extends PApplet {
         player.inBattle = false;
         victoryText = player.victory( );
         victory = true;
-        time = 0;
+        time = 1;
       }
       if ( player.currenthp <= 0 ) {
         textSize( 72 );
@@ -83,8 +83,8 @@ public class BattleWindow extends PApplet {
   public void generateString( ) {
     String characters = "qwertyuiopasdfghjklzxcvbnm1234567890";
     String out = "";
-    int speedBuff = (int)(player.getSPD( ) * 1.25) + player.currentEnemy.spd;
-    for ( int i = 0 ; i < 30 - speedBuff - (int)(Math.random( ) * speedBuff - speedBuff / 2 ) ; i++ ) {
+    int speedBuff = (int)(player.getSPD( ) * 1.5) + player.currentEnemy.spd;
+    for ( int i = 0 ; i < 20 - speedBuff - (int)(Math.random( ) * speedBuff - speedBuff / 2 ) ; i++ ) {
       out += characters.charAt( (int)(Math.random( ) * 36 ) );
     }
     randomString = out;
