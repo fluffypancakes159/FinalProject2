@@ -58,7 +58,7 @@ public class BattleWindow extends PApplet {
       }
       if ( player.currenthp <= 0 ) {
         textSize( 72 );
-        text ( "GAME OVER" , width / 2 , height / 2 );
+        text ( "GAME OVER" , width / 4 , height / 2 );
       }
     }
   }
