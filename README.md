@@ -11,27 +11,28 @@ In order to actually play the game, you must hit ENTER on a particular tile. Thi
 
 Depending on the type of square you're on, the enemy you may or may not fight will have varying difficulty:
 
-Plain 'ol '.' tiles don't add any difficulty.
-The 'H' square increases the difficulty by one.
-The 'T' square increases the difficulty by two.
-The 'L' square increases the difficulty by three.
-The 'S' and 'O' squares are places you can go to heal up.
-The '\*' square gives you free EXP when you interact with it.
+- Plain 'ol '.' tiles don't add any difficulty.
+- The 'H' square increases the difficulty by one.
+- The 'T' square increases the difficulty by two.
+- The 'L' square increases the difficulty by three.
+- The 'S' and 'O' squares are places you can go to heal up.
+- The '\*' square gives you free EXP when you interact with it.
 
 ## Battling
 
 As stated above, this game is a typing exercise. 
 This means you have to type in the provided string correctly to attack.
 If you type in the wrong string, then you have to go back and correct your mistake.
+
 **Make sure you click into the BattleWindow before you start typing**
 
 ## Stats
 
 There are three stats in the game: ATK, DEF, and SPD. 
-ATK determines the damage dealt per attack.
-DEF reduces the damage receives by an attack.
-SPD for the player reduces the amount of characters in the provided string.
-SPD for the enemy reduces the amount of ticks before they attack, and also increases the amount ot characters in the provided string, to a lesser extent.
+- ATK determines the damage dealt per attack.
+- DEF reduces the damage receives by an attack.
+- SPD for the player reduces the amount of characters in the provided string.
+- SPD for the enemy reduces the amount of ticks before they attack, and also increases the amount ot characters in the provided string, to a lesser extent.
 
 ## List of Features
 
