@@ -106,10 +106,10 @@ public class Map {
       int randomNum = (int)(Math.random( ) * 500); // 0-499
       // System.out.println( randomNum );
       if ( this.place == '?' ) {
-        if ( randomNum < 470 ) {
+        if ( randomNum < 465 ) {
           this.place = '.';
         }
-        else if ( randomNum < 490 ) {
+        else if ( randomNum < 485 ) {
           if ( distFromStart < 30 ) {
             this.place = 'H';
           }
@@ -117,8 +117,11 @@ public class Map {
             this.place = 'L';
           }
         }
-        else if ( randomNum < 495 ) {
+        else if ( randomNum < 490 ) {
           this.place = 'T';
+        }
+        else if ( randomNum < 495 ) {
+          this.place = '*';
         }
         else {
           if ( distFromStart >= 10 ) {
@@ -144,6 +147,10 @@ public class Map {
       }
       if ( place == 'S' || place == 'O' ) {
         return -10;
+      }
+      if ( place == '*' ) {
+        place = '.';
+        return -20;
       }
       if ( place == 'L' ) {
         difficulty += 3;

@@ -6,3 +6,5 @@ difficulty,name,hp,atk,def,spd,exp
 4,Bear,72,15,7,1,40
 5,Serpent,65,17,7,8,75
 6,Dragon,100,20,10,4,100
+7,God,150,30,20,6,0
+-1,Placeholder,0,1,1,1,0

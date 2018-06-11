@@ -21,6 +21,11 @@ public class Character {
     this.def = def;
     this.spd = spd;
     this.exp = exp;
+    if ( name.equals("Placeholder") ) {
+      int roll1 = (int)(Math.random( ) * 7);
+      int roll2 = (int)(Math.random( ) * 7);
+      this.exp = roll1 + roll2;
+    }
   }
 
   public String toString ( ) {

@@ -116,6 +116,13 @@ public class Player extends Character /* implements Battleable */ {
     return out;
   }
   
+  public String victory ( int expgain ) {
+    String out = "Victory!\n";
+    exp += expgain;
+    out += "EXP gained: " + expgain + "\n";
+    return out;
+  }
+  
   public boolean levelup ( ) {
     if ( exp >= (int)Math.pow( 1.75 , lvl + 3 ) / 3 + 5 ) {
       lvl++;

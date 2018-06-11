@@ -107,10 +107,21 @@ public class MapWindow extends PApplet {
         if ( output == -10 ) {
           player.currenthp = player.maxhp;
         }
+        else if ( output == -20 ) {
+          player.battle( EnemyList.get(8) );
+          EnemyList.get(8).exp = (int)(Math.random( ) * 7) + (int)(Math.random( ) * 7);
+        }
         else if ( output >= 0 ) {
           // System.out.println( EnemyList.get(output) );
           // System.out.println( EnemyList.get(output).currenthp );
-          player.battle( EnemyList.get(output) );
+          if ( output > 7 ) {
+            player.battle( EnemyList.get(7) );
+            EnemyList.get(7).currenthp = EnemyList.get(7).maxhp;
+          }
+          else {
+            player.battle( EnemyList.get(output) );
+            EnemyList.get(output).currenthp = EnemyList.get(output).maxhp;
+          }
         }
       }
       updateMap( );
