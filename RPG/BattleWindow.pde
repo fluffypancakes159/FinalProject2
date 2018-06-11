@@ -84,7 +84,7 @@ public class BattleWindow extends PApplet {
     String characters = "qwertyuiopasdfghjklzxcvbnm1234567890";
     String out = "";
     int speedBuff = (int)(player.getSPD( ) * 1.25) + player.currentEnemy.spd;
-    for ( int i = 0 ; i < 10 - speedBuff - (int)(Math.random( ) * speedBuff - speedBuff / 2 ) ; i++ ) {
+    for ( int i = 0 ; i < 30 - speedBuff - (int)(Math.random( ) * speedBuff - speedBuff / 2 ) ; i++ ) {
       out += characters.charAt( (int)(Math.random( ) * 36 ) );
     }
     randomString = out;
