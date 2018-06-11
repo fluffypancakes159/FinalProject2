@@ -18,6 +18,8 @@ Depending on the type of square you're on, the enemy you may or may not fight wi
 - The 'S' and 'O' squares are places you can go to heal up.
 - The '\*' square gives you free EXP when you interact with it.
 
+Keep in mind: the difficulty also increases the further you are from the starting tile!
+
 ## Battling
 
 As stated above, this game is a typing exercise. 
