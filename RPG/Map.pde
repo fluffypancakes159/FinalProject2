@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Map {
-  
+ 
+  // Player player;
   Point[][]map;
   Point start;
   int startX;
@@ -9,6 +10,7 @@ public class Map {
   
   public Map ( ) {
     this(20, 20);
+    // this.player = player;
   }
   
   public Map ( int x, int y) {
@@ -64,18 +66,19 @@ public class Map {
   
   private class Point {
     int x, y;
+    int distFromStart;
     boolean explored;
     boolean seen;
     char place;
     
     public Point ( int x, int y ) {
       this ( x , y , '.' );
-      
     }
     
     public Point ( int x, int y, char place_ ) {
       this.x = x;
       this.y = y;
+      this.distFromStart = Math.abs(this.x - startX) + Math.abs(this.y - startY);
       this.place = place_;
       if ( place_ == '?' ) {
         seen = false;
@@ -89,6 +92,7 @@ public class Map {
     public Point ( int x, int y, boolean start ) {
       this.x = x;
       this.y = y;
+      this.distFromStart = Math.abs(this.x - startX) + Math.abs(this.y - startY);
       seen = true;
       explored = start;
       place = 'S';
@@ -106,14 +110,19 @@ public class Map {
           this.place = '.';
         }
         else if ( randomNum < 490 ) {
-          this.place = 'H';
+          if ( distFromStart < 30 ) {
+            this.place = 'H';
+          }
+          else {
+            this.place = 'L';
+          }
         }
         else if ( randomNum < 495 ) {
-          this.place = 'C';
+          this.place = 'T';
         }
         else {
-          if ( Math.abs(this.x - startX) + Math.abs(this.y - startY) >= 7 ) {
-            this.place = 'B';
+          if ( distFromStart >= 10 ) {
+            this.place = 'O';
           }
           else {
             this.place = '.';
@@ -122,22 +131,24 @@ public class Map {
       }
     }
     
-    public void resolvePoint ( ) {
+    public int resolvePoint ( ) {
+      int difficulty = (int)(distFromStart / 7);
       if ( place == '.' ) {
-        System.out.println( "this is an empty place" );
+        
       }
       if ( place == 'H' ) {
-        System.out.println( "this is an abandoned house" );
+        difficulty += 1;
       }
-      if ( place == 'B' ) {
-        System.out.println( "this is an enemy base" );
+      if ( place == 'T' ) {
+        difficulty += 2;
       }
-      if ( place == 'S' ) {
-        System.out.println( "welcome home!" );
+      if ( place == 'S' || place == 'O' ) {
+        return -10;
       }
-      if ( place == 'S' ) {
-        System.out.println( "there is a chest there" );
+      if ( place == 'L' ) {
+        difficulty += 3;
       }
+      return difficulty;
     }
     
   }

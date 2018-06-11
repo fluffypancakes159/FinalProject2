@@ -6,24 +6,21 @@ public class Character {
   int atk;
   int def;
   int spd;
-  int lvl;
+  // int lvl;
   int exp;
-  boolean isDefending;
 
   public Character ( ) {
-    this ( "test" , 30 , 1 , 1 , 1,  1 , 1);
+    this ( "test" , 30 , 1 , 1 , 1 , 5);
   }
 
-  public Character ( String name , int maxhp , int atk, int def, int spd, int lvl, int exp ) {
+  public Character ( String name , int maxhp , int atk, int def, int spd, int exp ) {
     this.name = name;
     this.maxhp = maxhp; // + (int)(Math.random( ) * 11 - 5);
     currenthp = maxhp;
     this.atk = atk;
     this.def = def;
     this.spd = spd;
-    this.lvl = lvl;
     this.exp = exp;
-    this.isDefending = false;
   }
 
   public String toString ( ) {

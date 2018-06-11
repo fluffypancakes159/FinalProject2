@@ -5,9 +5,9 @@ public void setup ( ) {
   size(100, 100);
   background(255);
   String[] args = { "RPG" };
-  ArrayList<Item> ItemList = new ArrayList( );
+  ArrayList<Character> EnemyList = new ArrayList( );
   // String[] rawItems = loadStrings( "ItemList.csv" );
-  Table rawItems = loadTable( "ItemList.csv" , "header" );
+  Table rawEnemies = loadTable( "EnemyList.csv" , "header" );
   /*
   System.out.println( rawItems.getString(0,"name") + 
                       rawItems.getInt(0, "ATK" ) + 
@@ -15,23 +15,15 @@ public void setup ( ) {
                       rawItems.getInt(0, "SPD" ) );
                       */
   // String[] tokens;
-  System.out.println( rawItems.getRowCount( ) );
-  for ( int i = 0 ; i < rawItems.getRowCount( ) ; i++ ) {
-    if ( rawItems.getString(i,"itemType").equals( "weapon" ) ) {
-      ItemList.add( new Weapon( rawItems.getString(i,"name"), 
-                                rawItems.getInt(i, "ATK" ), 
-                                rawItems.getInt(i, "DEF" ), 
-                                rawItems.getInt(i, "SPD" ) ) );
-    }
-    else if ( rawItems.getString(i,"itemType").equals( "armor" ) ) {
-      ItemList.add( new Armor( rawItems.getString(i,"name"), 
-                                rawItems.getInt(i, "ATK" ), 
-                                rawItems.getInt(i, "DEF" ), 
-                                rawItems.getInt(i, "SPD" ) ) );
-    }
-    else if ( rawItems.getString(i,"itemType").equals( "restorative" ) ) {
-      ItemList.add( new Restorative( rawItems.getString(i,"name") , rawItems.getInt(i, "HP" ) ) );
-    }
+  // System.out.println( rawEnemies.getRowCount( ) );
+  for ( int i = 0 ; i < rawEnemies.getRowCount( ) ; i++ ) {
+    EnemyList.add( new Character( rawEnemies.getString(i,"name") ,
+                                  rawEnemies.getInt(i,"hp") ,
+                                  rawEnemies.getInt(i,"atk") ,
+                                  rawEnemies.getInt(i,"def") ,
+                                  rawEnemies.getInt(i,"spd") ,
+                                  rawEnemies.getInt(i,"exp") ) );
+    // System.out.println( EnemyList.get(i));
   }
   // Armor testItem = new Armor( "test" , 5);
   Map testMap = new Map (40, 40);
@@ -54,7 +46,7 @@ public void setup ( ) {
   PApplet.runSketch(args, iw);
   // player.equip( ItemList.get(0) );
   // player.equip( ItemList.get(1) );
-  // player.battle( new Character( ) );
-  MapWindow mw = new MapWindow( testMap , player );
+  MapWindow mw = new MapWindow( testMap , player , EnemyList );
   PApplet.runSketch(args, mw);
+  // player.battle( new Character( ) );
 }

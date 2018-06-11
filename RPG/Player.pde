@@ -7,6 +7,7 @@ public class Player extends Character /* implements Battleable */ {
   boolean inBattle;
   boolean battleWon;
   // String currentWord; 
+  int lvl;
   int mapX;
   int mapY;
   ArrayList<Item> inventory;
@@ -15,15 +16,15 @@ public class Player extends Character /* implements Battleable */ {
   // ArrayList<Character> currentEnemies;
   Character currentEnemy;
   String battleAction;
+  int atkGrowth, defGrowth, spdGrowth;
   
   public Player ( ) {
     this(0, 0);
   }
   
   public Player ( int startY, int startX) {
-    super ( "Player" , 20 , 10 , 5 , 0 , 1 , 0 );
-    /* maxhp = 20;
-    currenthp = 20; */
+    super ( "Player" , 20 , 10 , 5 , 0 , 0 );
+    lvl = 1;
     mapX = startX;
     mapY = startY;
     inventory = new ArrayList<Item>( );
@@ -49,7 +50,7 @@ public class Player extends Character /* implements Battleable */ {
       out += "DEF: " + def + "\n";
     }
     out += "SPD: " + spd + "\n";
-    out += "EXP: " + exp + "\n";
+    out += "EXP: " + exp + "     EXP to next level: " + (int)(Math.pow( 1.75 , lvl + 3) / 3 + 5) + "\n";
     out += "LVL: " + lvl + "\n";
     // out += "Gold: " + gold + "\n\n";
     if ( equippedWeapon != null ) {
@@ -103,6 +104,31 @@ public class Player extends Character /* implements Battleable */ {
   public void battle ( Character enemy ) {
     inBattle = true;
     currentEnemy = enemy;
+  }
+  
+  public String victory ( ) {
+    String out = "Victory!\n";
+    exp += currentEnemy.exp;
+    out += "EXP gained: " + currentEnemy.exp + "\n";
+    while ( levelup ( ) ) {
+      out += "Level Up! ATK +" + atkGrowth + "  DEF +" + defGrowth + " SPD +" + spdGrowth + "\n";
+    }
+    return out;
+  }
+  
+  public boolean levelup ( ) {
+    if ( exp >= (int)Math.pow( 1.75 , lvl + 3 ) / 3 + 5 ) {
+      lvl++;
+      atkGrowth = (int)(Math.random( ) * 3 + 1);
+      defGrowth = (int)(Math.random( ) * 3 + 1);
+      spdGrowth = (int)(Math.random( ) * 3 + 1);
+      atk += atkGrowth;
+      def += defGrowth;
+      spd += spdGrowth;
+      exp -= Math.pow( 2 , lvl ) / 3;
+      return true;
+    }
+    return false;
   }
   
   public int getATK ( ) {

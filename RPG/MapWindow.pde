@@ -1,13 +1,15 @@
 public class MapWindow extends PApplet {
 
+  ArrayList<Character> EnemyList;
   boolean setFrame = true;
   Map currentMap;
   Player player;
   int offsetX, offsetY;
   
-  public MapWindow ( Map map, Player player ) {
+  public MapWindow ( Map map, Player player , ArrayList<Character> EnemyList ) {
     this.currentMap = map;
     this.player = player;
+    this.EnemyList = EnemyList;
     offsetX = 0;
     offsetY = 0;
   }
@@ -101,7 +103,15 @@ public class MapWindow extends PApplet {
         }
       }
       if ( key == ENTER ) {
-        currentMap.map[player.mapY][player.mapX].resolvePoint( );
+        int output = currentMap.map[player.mapY][player.mapX].resolvePoint( );
+        if ( output == -10 ) {
+          player.currenthp = player.maxhp;
+        }
+        else if ( output >= 0 ) {
+          // System.out.println( EnemyList.get(output) );
+          // System.out.println( EnemyList.get(output).currenthp );
+          player.battle( EnemyList.get(output) );
+        }
       }
       updateMap( );
     }

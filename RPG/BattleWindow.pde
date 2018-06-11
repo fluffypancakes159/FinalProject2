@@ -2,6 +2,8 @@ import java.util.Arrays;
 
 public class BattleWindow extends PApplet {
 
+  boolean victory = false;
+  String victoryText = "";
   boolean setFrame = true;
   boolean genString = true;
   Player player;
@@ -27,14 +29,18 @@ public class BattleWindow extends PApplet {
     background(255);
     textSize(14);
     text("Player\nHP: " + player.currenthp + " / " + player.maxhp + "\nATK: " + player.getATK( ) + "\nDEF: " + player.getDEF( ) + "\nSPD: " + player.getSPD( ) , 20 , 20 );
+    if ( victory ) {
+      text( victoryText , 20 , 150 );
+    }
     fill(69);
     if ( player.inBattle ) {
+      victory = false;
       if ( player.currenthp > 0 && player.currentEnemy.currenthp > 0 ) {
         if ( genString ) {
           generateString( );
           genString = false;
         }
-        if ( time % 1000 == 0 ) {
+        if ( time % 1000 - player.currentEnemy.spd * 80 == 0 ) {
           player.currentEnemy.attack( player );
         }
         Character enemy = player.currentEnemy;
@@ -44,9 +50,15 @@ public class BattleWindow extends PApplet {
         fill(69);
         time++;
       }  
-      if ( player.currentEnemy.currenthp > 0 ) {
+      if ( player.currentEnemy.currenthp <= 0 ) {
         player.inBattle = false;
-        player.currentEnemy = null;
+        victoryText = player.victory( );
+        victory = true;
+        time = 0;
+      }
+      if ( player.currenthp <= 0 ) {
+        textSize( 72 );
+        text ( "GAME OVER" , width / 2 , height / 2 );
       }
     }
   }
@@ -71,8 +83,8 @@ public class BattleWindow extends PApplet {
   public void generateString( ) {
     String characters = "qwertyuiopasdfghjklzxcvbnm1234567890";
     String out = "";
-    int speedBuff = (int)(player.getSPD( ) * 1.25);
-    for ( int i = 0 ; i < 30 - speedBuff - (int)(Math.random( ) * speedBuff + speedBuff / 2 ) ; i++ ) {
+    int speedBuff = (int)(player.getSPD( ) * 1.25) + player.currentEnemy.spd;
+    for ( int i = 0 ; i < 10 - speedBuff - (int)(Math.random( ) * speedBuff - speedBuff / 2 ) ; i++ ) {
       out += characters.charAt( (int)(Math.random( ) * 36 ) );
     }
     randomString = out;
